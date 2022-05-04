@@ -1061,6 +1061,8 @@ LONG SCardDisconnect(SCARDHANDLE hCard, DWORD dwDisposition)
 	SCONTEXTMAP * currentContextMap;
 	CHANNEL_MAP * pChannelMap;
 
+   dwDisposition = SCARD_RESET_CARD;
+
 	PROFILE_START
 	API_TRACE_IN("%ld %ld", hCard, dwDisposition)
 
