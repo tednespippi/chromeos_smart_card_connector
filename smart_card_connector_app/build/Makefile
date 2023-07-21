@@ -154,7 +154,7 @@ $(eval $(call COPY_TO_OUT_DIR_RULE,$(SOURCES_PATH)/about-window.css))
 # explanation. Here we add rules that compile the .js file for the iframe and
 # copy it, together with an .html file, to the out directory.
 
-ifeq ($(TOOLCHAIN),emscripten)
+ifneq (,$(findstring emscripten,$(TOOLCHAIN)))
 $(eval $(JS_COMMON_BACKGROUND_PAGE_UNLOAD_PREVENTING_IFRAME_RULE))
 endif
 

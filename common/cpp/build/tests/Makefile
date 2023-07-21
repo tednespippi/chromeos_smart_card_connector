@@ -40,7 +40,7 @@ SOURCES := \
 	$(SOURCES_PATH)/value_unittest.cc \
 	$(ROOT_SOURCES_PATH)/public/value_builder_unittest.cc \
 
-ifeq ($(TOOLCHAIN),emscripten)
+ifneq (,$(findstring emscripten,$(TOOLCHAIN)))
 
 SOURCES += \
 	$(SOURCES_PATH)/value_emscripten_val_conversion_unittest.cc \

@@ -2243,3 +2243,7 @@ TEST_F(SmartCardConnectorApplicationTwoClientsTest,
 }
 
 }  // namespace google_smart_card
+
+extern "C" int __attribute__((used)) __lsan_is_turned_off() {
+  return 1;
+}

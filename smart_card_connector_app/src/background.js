@@ -85,6 +85,7 @@ function createExecutableModule() {
       return new GSC.NaclModule(
           'executable_module.nmf', GSC.NaclModule.Type.PNACL);
     case GSC.ExecutableModule.Toolchain.EMSCRIPTEN:
+    case GSC.ExecutableModule.Toolchain.EMSCRIPTEN_ASAN:
       return new GSC.EmscriptenModule('executable_module');
   }
   GSC.Logging.fail(
@@ -144,8 +145,7 @@ chrome.runtime.onConnect.addListener(connectionListener);
 chrome.runtime.onConnectExternal.addListener(externalConnectionListener);
 chrome.runtime.onMessageExternal.addListener(externalMessageListener);
 
-if (GSC.ExecutableModule.TOOLCHAIN ===
-    GSC.ExecutableModule.Toolchain.EMSCRIPTEN) {
+if ([GSC.ExecutableModule.Toolchain.EMSCRIPTEN, GSC.ExecutableModule.Toolchain.EMSCRIPTEN_ASAN].includes(GSC.ExecutableModule.TOOLCHAIN)) {
   // Open a message channel to an invisible iframe, in order to keep our
   // background page always alive, and hence be responsive to incoming smart
   // card requests. The user who doesn't like extra resource usage can uninstall
